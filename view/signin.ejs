@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Sign-In page </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form {
+            margin-top: 150px;
+        }
+
+        .form-fields {
+            box-shadow: 8px 8px 8px rgb(71, 73, 71);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center form">
+            <div class="col-lg-8 ">
+                <div class="border border-success mt-5 rounded text-center form-fields">
+                    <h2> Welcome ! Please Sign in </h2>
+                    <p class="text-muted"> Sign up then chat with friends </p>
+                    <form method="post" action="/sign-in">
+                        <div class="row mb-3 m-1">
+                            <div class="col-lg-6 mb-3">
+                                <input type="text" class=" form-control" placeholder=" Enter your First name"
+                                    name="fName">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class=" form-control" placeholder=" Enter your Last name"
+                                    name="lName">
+                            </div>
+                        </div>
+                        <div class="row mb-3 m-1">
+                            <div class="col">
+                                <input type="email" class=" form-control" placeholder=" Set your email" name="email">
+                            </div>
+                        </div>
+                        <div class="row mb-3 m-1">
+                            <div class="col">
+                                <input type="password" class=" form-control" placeholder=" Enter your password"
+                                    name="password">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 m-1">
+                            <div class="col">
+                                <button class="btn btn-block btn-success mt-2 mb-2" type="submit"> Submit </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

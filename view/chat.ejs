@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Chat App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <style>
+        body {
+            overflow: auto;
+        }
+
+        .chatField {
+            position: relative;
+        }
+
+        .position2 {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            cursor: pointer;
+        }
+
+        .position {
+            position: fixed;
+            bottom: 0;
+        }
+
+        #chatId {
+            list-style: none;
+        }
+
+        #chatItem {
+            padding: 20px 0px 20px 0px;
+            border-bottom: 2px solid black;
+            width: 90vw;
+        }
+
+        .userName {
+            background-color: rgb(116, 115, 115);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+
+        .userMsg {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row bg-dark text-light text-center p-3">
+            <div class="col-lg-4 text-left pt-2">
+                <h2 class="lead"> Design & Develop by <b><i><u>IA</u></i></b> | </h2>
+            </div>
+            <div class="col-lg-4 text-left">
+                <h2> Welcome Dear
+                    <%=userName%>
+                </h2>
+            </div>
+            <div class="col-lg-4  text-center">
+                <a href='/login' class="btn btn-danger btn-block stretched-link p-2"> Log out </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul id="chatId">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <label for="chatField">
+        <input type="text" class="form-control position p-4 bg-light text-dark"
+            placeholder="Enter your messge and then press enter " onkeydown="getMessage(event)">
+    </label>
+</body>
+<script>
+    let socker = io();
+    let UserName = '<%=userName%>'
+    window.onload = () => {
+        socker.emit("GET_ALL_MESSAGE_FROM_DB", UserName)
+        socker.on("Received_All_Messages_From_DB", messages => {
+            messages.map(message => listUpdater(message))
+        })
+        // 1- emil then On 2- server se emit then on
+    }
+    function getMessage(event) {
+        if (event.which === 13) {
+            messageValue = event.target.value;
+            let dataTOsend = { MessageValue: messageValue, UserName: UserName }
+            socker.emit("SEND_MSG_VALUE", dataTOsend);
+            listUpdater(dataTOsend);
+            event.target.value = '';
+            event.target.focus();
+        }
+    }
+
+    function listUpdater(dataTOsend) {
+        let getUl = document.getElementById("chatId");
+        let listItem = document.createElement("li")
+        listItem.setAttribute('id', "chatItem")
+        let nameSpan = document.createElement("span");
+        nameSpan.appendChild(document.createTextNode(dataTOsend.UserName))
+        nameSpan.setAttribute('class', 'userName')
+        let msgSpan = document.createElement("span");
+        msgSpan.appendChild(document.createTextNode(dataTOsend.MessageValue))
+        msgSpan.setAttribute('class', 'userMsg')
+        listItem.appendChild(nameSpan);
+        listItem.appendChild(msgSpan);
+        getUl.appendChild(listItem);
+    }
+    socker.on("GET_ALL_MASSAGE", msgData => {
+        listUpdater(msgData);
+    })
+</script>
+
+</html>

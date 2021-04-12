@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Signin</title>
+    <style>
+        .form {
+            margin-top: 150px;
+        }
+        
+        .form-fields {
+            box-shadow: 8px 8px 8px rgb(71, 73, 71);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center form">
+            <div class="col-lg-8 ">
+                <div class="border border-success mt-5 rounded text-center form-fields">
+                    <h2> Welcome ! Please Login</h2>
+                    <p class="text-muted"> Login to see new Feeds </p>
+                    <form action="/login" method="post">
+                        <div class="row mb-3 m-1">
+                            <div class="col">
+                                <input type="email" class=" form-control" placeholder=" Enter your email" name="email">
+                            </div>
+                        </div>
+                        <div class="row mb-3 m-1">
+                            <div class="col">
+                                <input type="password" class=" form-control" placeholder=" Enter your password" name="password">
+                            </div>
+                        </div>
+                        <div class="row mb-3 m-1">
+                            <div class="col">
+                                <button class="btn btn-block btn-success mt-2 mb-2" type="submit"> Login </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <a href='/sign-in'> If you have not any account lets! login </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
