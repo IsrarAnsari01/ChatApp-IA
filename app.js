@@ -74,6 +74,9 @@ app.get("/logout", (req, res) => {
     req.session.destroy();
     res.redirect("/login")
 })
+app.use("*", (req,res) => {
+    res.send("<h2> Welcome to chat app </h2>")
+})
 
 let server = app.listen(port, err => {
     if (err) {
