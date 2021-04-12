@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 module.exports.getConnectionWithDb = function () {
-    mongoose.connect("mongodb+srv://user_01:user_01@cluster0.e46ff.mongodb.net/chapApp?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoose.connect("mongodb+srv://######:######@cluster0.e46ff.mongodb.net/chapApp?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 
     const db = mongoose.connection;
 
